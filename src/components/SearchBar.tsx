@@ -11,9 +11,15 @@ function SearchBar() {
     const [selectedNames, setSelectedNames] = useState<string[]>([])
 
 
-    const handleInputChange = (e) => {
-        setName(e.target.value)
-        filterNamesByTypedName(e.target.value)
+    interface InputChangeEvent {
+        target: {
+            value: string;
+        };
+    }
+
+    const handleInputChange = (e: InputChangeEvent) => {
+        setName(e.target.value);
+        filterNamesByTypedName(e.target.value);
     }
 
     const getNames = async () => {
@@ -90,7 +96,7 @@ function SearchBar() {
                 {
                     filteredSuggestions?.map((item, id) => {
                         return (
-                            <li className='name-list' key={id} onClick={(e) => { setSletedItems(item) }}  > {item} </li>
+                            <li className='name-list' key={id} onClick={() => { setSletedItems(item) }}  > {item} </li>
                         )
                     })
                 }
